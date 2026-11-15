@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walima Invitation — Waleed & Wardaa</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-outer: #e9e6df;
+      --bg-cream: #f7f4ee;
+      --valima-green: #2d4235;
+      --valima-green-dark: #1f3026;
+      --valima-gold: #c5a467;
+      --text-dark: #3a3832;
+      --text-muted: #6e6a61;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-outer);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .card-wrapper {
+      width: 100%;
+      max-width: 440px;
+      background-color: var(--bg-cream);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.14);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ================= HERO ENTRANCE ANIMATIONS (ONLY TOP SECTION) ================= */
+    @keyframes slideFromLeftUltraSlow {
+      0% {
+        opacity: 0;
+        transform: translateX(-32px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes slideFromRightUltraSlow {
+      0% {
+        opacity: 0;
+        transform: translateX(32px) scale(0.98);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes slideFromTopUltraSlow {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUpUltraSlow {
+      0% {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ================= SCROLL-ONLY REVEAL CLASSES ================= */
+    /* Ye elements tab tak invisible & ruke rahenge jab tak user scroll down nahi karega */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(45px) scale(0.98);
+      transition: opacity 2.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-left {
+      opacity: 0;
+      transform: translateX(-45px);
+      transition: opacity 2.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-right {
+      opacity: 0;
+      transform: translateX(45px);
+      transition: opacity 2.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.is-visible,
+    .scroll-left.is-visible,
+    .scroll-right.is-visible {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+
+    /* ================= SECTION 1: HERO & MUSIC PLAYER ================= */
+    .hero-section {
+      position: relative;
+      height: 365px;
+      background: linear-gradient(rgba(30, 42, 34, 0.42), rgba(30, 42, 34, 0.55)),
+                  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSacH3t_U-o8VXlY7WIokdGVMZdATn0E3vcPxA8goG2hg&s=10') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 24px 16px 26px;
+      overflow: hidden;
+    }
+
+    .lace-envelope {
+      position: absolute;
+      top: 0;
+      width: 250px;
+      height: 145px;
+      background: rgba(247, 244, 238, 0.94);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-top: 4px solid #fff;
+      animation: slideFromTopUltraSlow 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .lace-envelope::after {
+      content: "W & W";
+      font-family: 'Great Vibes', cursive;
+      font-size: 22px;
+      color: var(--valima-green);
+      margin-top: -38px;
+      letter-spacing: 2px;
+    }
+
+    .hero-widgets {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      z-index: 2;
+      position: relative;
+    }
+
+    .oval-frame {
+      width: 152px;
+      height: 192px;
+      border-radius: 50%;
+      border: 6px solid #e5dec9;
+      outline: 2px solid var(--valima-gold);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38), inset 0 0 15px rgba(0,0,0,0.2);
+      overflow: hidden;
+      background: #fff;
+      flex-shrink: 0;
+      z-index: 3;
+      margin-right: -14px;
+      animation: slideFromLeftUltraSlow 3.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    .oval-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .music-card {
+      width: 185px;
+      background: rgba(245, 243, 238, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 10px 10px 10px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      z-index: 2;
+      animation: slideFromRightUltraSlow 3.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+
+    .music-art {
+      width: 100%;
+      height: 115px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .music-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 3px;
+      background: rgba(45, 66, 53, 0.25);
+      border-radius: 2px;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 35%;
+      height: 100%;
+      background: var(--valima-green);
+      transition: width 0.6s ease;
+    }
+
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      color: var(--valima-green-dark);
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .play-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--valima-green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .tap-play-label {
+      font-family: 'Great Vibes', cursive;
+      color: #f7f4ee;
+      font-size: 19px;
+      margin-top: 8px;
+      margin-left: 115px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.65);
+      animation: fadeUpUltraSlow 3s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both;
+    }
+
+    /* ================= SECTION 2: BISMILLAH & QURAN VERSE ================= */
+    .verse-section {
+      padding: 45px 30px 35px;
+      text-align: center;
+      background-color: var(--bg-cream);
+    }
+
+    .bismillah-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      color: var(--valima-green);
+      margin-bottom: 10px;
+    }
+
+    .bismillah-eng {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 34px;
+    }
+
+    .quran-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    .quran-ref {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      color: var(--valima-green);
+      font-weight: 600;
+      margin-bottom: 36px;
+    }
+
+    /* LARGER & CRYSTAL CLEAR ORNATE ROUND PHOTO FRAME */
+    .ornate-round-wrapper {
+      position: relative;
+      width: 235px;
+      height: 235px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ornate-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px double var(--valima-gold);
+      box-shadow: 0 0 0 6px var(--bg-cream), 0 0 0 8px rgba(197, 164, 103, 0.55), 0 10px 25px rgba(0,0,0,0.08);
+      pointer-events: none;
+    }
+
+    .ornate-round-wrapper img {
+      width: 214px;
+      height: 214px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* ================= SECTION 3: VALIMA ARCH CARD ================= */
+    .arch-container {
+      padding: 20px 26px;
+    }
+
+    .arch-card {
+      background: linear-gradient(180deg, var(--valima-green) 0%, var(--valima-green-dark) 100%);
+      border-radius: 190px 190px 12px 12px;
+      padding: 55px 24px 110px;
+      text-align: center;
+      color: #f7f4ee;
+      position: relative;
+      box-shadow: 0 12px 30px rgba(31, 48, 38, 0.25);
+      overflow: hidden;
+    }
+
+    .arch-bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 22px;
+      color: #e6d5b8;
+      margin-bottom: 4px;
+    }
+
+    .arch-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      color: #d0d8d3;
+      margin-bottom: 24px;
+    }
+
+    .invite-line {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #e8e4dc;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .person-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 38px;
+      color: #f3e5c8;
+      line-height: 1.15;
+      font-weight: 400;
+    }
+
+    .parent-details {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #cbd5cf;
+      margin-top: 4px;
+      margin-bottom: 14px;
+    }
+
+    .ampersand {
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: var(--valima-gold);
+      margin: 6px 0;
+    }
+
+    .event-time {
+      margin-top: 22px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: #e8e4dc;
+    }
+
+    .event-time span {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-style: normal;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #f3e5c8;
+      margin-top: 4px;
+    }
+
+    /* RICH METALLIC GOLDEN FLOWERS AT BOTTOM OF ARCH & CALENDAR */
+    .floral-bottom {
+      /* position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 95px;
+      background-image: 
+        linear-gradient(to top, rgba(212, 168, 79, 0.65) 0%, rgba(197, 152, 65, 0.35) 55%, transparent 100%),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYh8iBVcGZFJfqE8xr0rgyOiooys3xZL0xhrcl20URlg&s=10');
+      background-size: cover;
+      background-position: center bottom; */
+      /* Turns petals into rich warm champagne & metallic gold */
+      filter: sepia(0.85) saturate(2.2) hue-rotate(-12deg) brightness(1.05) contrast(1.08);
+      opacity: 0.96;
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+      pointer-events: none;
+    }
+
+    /* ================= SECTION 4: DECEMBER 2026 CALENDAR ARCH ================= */
+    .calendar-arch {
+      background: linear-gradient(180deg, var(--valima-green) 0%, var(--valima-green-dark) 100%);
+      border-radius: 190px 190px 12px 12px;
+      padding: 50px 22px 110px;
+      text-align: center;
+      color: #f7f4ee;
+      position: relative;
+      box-shadow: 0 12px 30px rgba(31, 48, 38, 0.25);
+      overflow: hidden;
+    }
+
+    .month-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 40px;
+      color: #f3e5c8;
+      margin-bottom: 22px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px 4px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 24px;
+    }
+
+    .day-header {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #cbd5cf;
+      margin-bottom: 6px;
+    }
+
+    .date-cell {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #f7f4ee;
+    }
+
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .heart-date {
+      font-weight: 700;
+      color: #f3e5c8;
+    }
+
+    .heart-date svg {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      top: -2px;
+      left: -3px;
+      stroke: #f3e5c8;
+      fill: none;
+      stroke-width: 1.6;
+      animation: heartPulse 4s infinite ease-in-out;
+    }
+
+    .year-title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      letter-spacing: 4px;
+      color: #f3e5c8;
+    }
+
+    /* ================= SECTION 5: TAP FOR VENUE & RSVP ================= */
+    .footer-section {
+      position: relative;
+      height: 360px;
+      margin-top: 20px;
+      background: linear-gradient(rgba(25, 36, 29, 0.62), rgba(25, 36, 29, 0.72)),
+                  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSacH3t_U-o8VXlY7WIokdGVMZdATn0E3vcPxA8goG2hg&s=10') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .tap-for-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 46px;
+      color: #f7f4ee;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .action-buttons {
+      width: 100%;
+      max-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .btn-outline {
+      padding: 12px 32px;
+      border: 1px solid rgba(247, 244, 238, 0.8);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      color: #f7f4ee;
+      font-family: 'Great Vibes', cursive;
+      font-size: 26px;
+      cursor: pointer;
+      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease,
+                  opacity 2.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      width: 170px;
+    }
+
+    .btn-venue {
+      align-self: flex-start;
+    }
+
+    .btn-rsvp {
+      align-self: flex-end;
+    }
+
+    .btn-outline:hover {
+      background: var(--valima-gold);
+      border-color: var(--valima-gold);
+      color: var(--valima-green-dark);
+    }
+
+    /* Interactive Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 99;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--bg-cream);
+      border: 2px solid var(--valima-gold);
+      border-radius: 12px;
+      padding: 28px 22px;
+      max-width: 340px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: fadeUpUltraSlow 0.6s ease;
+    }
+
+    .modal-box h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--valima-green);
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .modal-box p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .close-modal {
+      background: var(--valima-green);
+      color: #fff;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper">
+
+    <!-- 1. HERO SECTION (Animates on page load) -->
+    <section class="hero-section">
+      <div class="lace-envelope"></div>
+
+      <div class="hero-widgets">
+        <div class="oval-frame">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREMskr08iTdUBFuQ1a75p1YkfkQwjBkRtUntUvf_k4qQ&s=10" alt="Valima Swans" />
+        </div>
+
+        <div class="music-card">
+          <div class="music-art">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSYTL8o5dp2HY3FyYZEsGxyENIfz3RrCnCvgHuNkKjTw&s=10" alt="Valima Couple" />
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+          </div>
+          <div class="player-controls">
+            <span>&#9664;&#9664;</span>
+            <button class="play-btn" id="playBtn" onclick="toggleAudio()">&#9654;</button>
+            <span>&#9654;&#9654;</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tap-play-label" id="playLabel">Tap to play</div>
+
+      <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      </audio>
+    </section>
+
+    <!-- 2. BISMILLAH & QURANIC VERSE (Scroll-triggered only) -->
+    <section class="verse-section">
+      <div class="bismillah-arabic scroll-reveal">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+      <div class="bismillah-eng scroll-reveal">
+        IN THE NAME OF ALLAH, THE MOST GRACIOUS, THE MOST MERCIFUL
+      </div>
+
+      <p class="quran-quote scroll-reveal">
+        “And among His Signs is that He created for you spouses from among yourselves that you may find tranquility in them, and He placed between you affection and mercy.”
+      </p>
+      <div class="quran-ref scroll-reveal">QUR’AN 30:21</div>
+
+      <!-- Larger & High-Res Clear Circular Frame -->
+      <div class="ornate-round-wrapper scroll-reveal">
+        <div class="ornate-ring"></div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP9MAmH8NZBKRqzBS6nUH5wu68D31cSA9JmJvnyGok3g&s=10" alt="Valima Couple Portrait" />
+      </div>
+    </section>
+
+    <!-- 3. VALIMA CEREMONY ARCH CARD (Scroll-triggered only) -->
+    <section class="arch-container">
+      <div class="arch-card scroll-reveal">
+        <div class="arch-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+        <div class="arch-sub">In the name of Allah, The most gracious, The most merciful</div>
+
+        <p class="invite-line">
+          You’re cordially invited to the Walima Ceremony<br />
+          celebrating the union between
+        </p>
+
+        <h1 class="person-name scroll-left">Waleed</h1>
+        <div class="parent-details">S/O MRS &amp; (LATE) MR ABDUL HAMEED</div>
+
+        <div class="ampersand">&amp;</div>
+
+        <h1 class="person-name scroll-right">Wardaa</h1>
+        <div class="parent-details">D/O MRS &amp; MR SHAHBAZ ISMAIL</div>
+
+        <div class="event-time">
+          At
+          <span>8:00 pm</span>
+        </div>
+
+        <!-- Golden Flowers -->
+        <div class="floral-bottom"></div>
+      </div>
+    </section>
+
+    <!-- 4. DECEMBER 2026 CALENDAR ARCH (Scroll-triggered only) -->
+    <section class="arch-container">
+      <div class="calendar-arch scroll-reveal">
+        <h2 class="month-title">December</h2>
+
+        <div class="calendar-grid">
+          <div class="day-header">Sun</div>
+          <div class="day-header">Mon</div>
+          <div class="day-header">Tue</div>
+          <div class="day-header">Wed</div>
+          <div class="day-header">Thu</div>
+          <div class="day-header">Fri</div>
+          <div class="day-header">Sat</div>
+
+          <div></div>
+          <div></div>
+          <div class="date-cell">1</div>
+          <div class="date-cell">2</div>
+          <div class="date-cell">3</div>
+          <div class="date-cell">4</div>
+          <div class="date-cell">5</div>
+
+          <div class="date-cell">6</div>
+          <div class="date-cell">7</div>
+          <div class="date-cell">8</div>
+          <div class="date-cell">9</div>
+          <div class="date-cell">10</div>
+          <div class="date-cell">11</div>
+          <div class="date-cell">12</div>
+
+          <div class="date-cell">13</div>
+          <div class="date-cell">14</div>
+          <div class="date-cell">15</div>
+          <div class="date-cell">16</div>
+          <div class="date-cell">17</div>
+          <div class="date-cell">18</div>
+          <div class="date-cell">19</div>
+
+          <div class="date-cell">20</div>
+          <div class="date-cell">21</div>
+                    <div class="date-cell">22</div>
+          <div class="date-cell heart-date">
+            23
+            <svg viewBox="0 0 32 32">
+              <path d="M16 28.5C16 28.5 3 20.2 3 11.5C3 7.4 6.2 4 10.2 4C12.7 4 14.9 5.3 16 7.3C17.1 5.3 19.3 4 21.8 4C25.8 4 29 7.4 29 11.5C29 20.2 16 28.5 16 28.5Z"/>
+            </svg>
+          </div>
+          <div class="date-cell">23</div>
+          <div class="date-cell">24</div>
+          <div class="date-cell">25</div>
+          <div class="date-cell">26</div>
+
+          <div class="date-cell">27</div>
+          <div class="date-cell">28</div>
+          <div class="date-cell">29</div>
+          <div class="date-cell">30</div>
+          <div class="date-cell">31</div>
+        </div>
+
+        <div class="year-title">2026</div>
+        <!-- Golden Flowers -->
+        <div class="floral-bottom"></div>
+      </div>
+    </section>
+
+    <!-- 5. TAP FOR VENUE & RSVP FOOTER (Scroll-triggered only) -->
+    <section class="footer-section">
+      <h2 class="tap-for-title scroll-reveal">Tap For</h2>
+      <div class="action-buttons">
+        <button class="btn-outline btn-venue scroll-left" onclick="openModal('venue')">Venue</button>
+        <button class="btn-outline btn-rsvp scroll-right" onclick="openModal('rsvp')">Rsvp</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Interactive Modal -->
+  <div class="modal-overlay" id="infoModal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <h3 id="modalTitle">Walima Venue</h3>
+      <p id="modalText">Royal Palm Banquet Hall, Hyderabad.<br>Dinner will be served at 9:30 PM.</p>
+      <!-- <button class="close-modal" onclick="closeModal()">Close</button> -->
+
+<a
+  href="https://maps.app.goo.gl/A3f48SWsPteZsicj9?g"
+  class="close-modal"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  📍 View Location
+</a>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playBtn');
+    const playLabel = document.getElementById('playLabel');
+    const progressBar = document.getElementById('progressBar');
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (!isPlaying) {
+        audio.play();
+        playBtn.innerHTML = '&#10074;&#10074;';
+        playLabel.textContent = 'Playing...';
+        progressBar.style.width = '75%';
+        isPlaying = true;
+      } else {
+        audio.pause();
+        playBtn.innerHTML = '&#9654;';
+        playLabel.textContent = 'Tap to play';
+        isPlaying = false;
+      }
+    }
+
+    function openModal(type) {
+      const modal = document.getElementById('infoModal');
+      const title = document.getElementById('modalTitle');
+      const text = document.getElementById('modalText');
+
+      if (type === 'venue') {
+        title.textContent = 'Walima Venue';
+        text.innerHTML = '<strong>Dana Hall 2-Budaiya; Banquet</strong><br>Tuesday, 23rd December 2026<br>Reception: 8:30 PM | Dinner: 9:30 PM';
+      } else {
+        title.textContent = 'RSVP Confirmation';
+        text.innerHTML = 'We look forward to your presence!<br>Naveed: <strong>+92 33112215</strong><br>Nazish: <strong>+92 36929488</strong>';
+      }
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').style.display = 'none';
+    }
+
+    // Strict Scroll-Triggered Animation (Triggers only when scrolled into view)
+    let hasUserScrolled = false;
+
+    const scrollElements = document.querySelectorAll('.scroll-reveal, .scroll-left, .scroll-right');
+
+    const checkScrollReveal = () => {
+      const triggerBottom = window.innerHeight * 0.85;
+
+      scrollElements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+        // Agar element screen ke neeche hai ya user ne scroll kiya hai tabhi reveal ho
+        if (boxTop < triggerBottom && (hasUserScrolled || window.scrollY > 15)) {
+          el.classList.add('is-visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', () => {
+      hasUserScrolled = true;
+      checkScrollReveal();
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
